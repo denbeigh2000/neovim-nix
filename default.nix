@@ -8,9 +8,9 @@ let
   # but this does not seem to overwrite the version of golangci-lint used by vimPlugins.vim-go.
 
   extraPlugins = (
-  if hostPlatform.isDarwin
-  then []
-  else [ pkgs.vimPlugins.vim-go ]
+    if hostPlatform.isDarwin
+    then [ ]
+    else [ pkgs.vimPlugins.vim-go ]
   );
 
   plugins = with pkgs.vimPlugins; [
@@ -41,12 +41,12 @@ let
     gruvbox
   ] ++ extraPlugins;
 in
-  pkgs.neovim.override {
-    configure = {
-      customRC = (builtins.readFile ./nvimrc);
+pkgs.neovim.override {
+  configure = {
+    customRC = (builtins.readFile ./nvimrc);
 
-      packages.myVimPackage = {
-        start = plugins;
-      };
+    packages.myVimPackage = {
+      start = plugins;
     };
-  }
+  };
+}

@@ -13,9 +13,9 @@
           pkgs = nixpkgs.legacyPackages."${system}";
         });
       in
-        {
-          packages.neovim = neovim;
+      {
+        packages.neovim = neovim;
 
-          defaultPackage = neovim;
-        });
+        defaultPackage = neovim;
+      });
 }
