@@ -50,7 +50,7 @@ set tabstop=4
 set laststatus=2
 " Always show margin bar, otherwise LangClient makes text jump around
 " while scrolling
- set signcolumn=yes
+set signcolumn=yes
 
 " In-code auto-completion
 " Use languageserver
@@ -133,7 +133,7 @@ let g:LangaugeClient_rootMarkers = ['go.mod']
 
 " FZF Shortcut Bindings
 nnoremap <leader>q :Rg<CR>
-" nnoremap <leader>q :GFiles<CR>
+" nnoremap <leader>w :GFiles<CR>
 nnoremap <leader>w :Files<CR>
 nnoremap <leader>e :Buffers<CR>
 nnoremap <leader>s :Lines<CR>

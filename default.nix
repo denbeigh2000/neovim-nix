@@ -15,31 +15,39 @@ let
 
   plugins = with pkgs.vimPlugins; [
     LanguageClient-neovim
-    nvim-yarp
-    ncm2
-    vim-gitgutter
-    vim-rooter
-    incsearch-vim
-    fzf-vim
-    suda-vim
+    ansible-vim
+    arcanist-vim
     committia-vim
+    csv-vim
+    editorconfig-vim
+    fzf-vim
+    gruvbox
+    incsearch-vim
+    indentLine
+    kotlin-vim
+    markdown-preview-nvim
+    ncm2
+    nginx-vim
+    nvim-yarp
+    suda-vim
+    taglist-vim
+    typescript-vim
+    vim-airline
+    vim-android
+    vim-elixir
     vim-fugitive
     vim-git
-    vim-airline
-    taglist-vim
-    indentLine
-    vim-toml
-    csv-vim
-    vim-nix
-    ansible-vim
-    vim-markdown
-    vim-puppet
-    arcanist-vim
-    vim-protobuf
-    vim-jsx-typescript
+    vim-gitgutter
     vim-javascript
-    gruvbox
-    editorconfig-vim
+    vim-jsonnet
+    vim-jsx-typescript
+    vim-markdown
+    vim-nix
+    vim-protobuf
+    vim-puppet
+    vim-rooter
+    vim-terraform
+    vim-toml
   ] ++ extraPlugins;
 in
 pkgs.neovim.override {
