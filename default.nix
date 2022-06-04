@@ -39,6 +39,7 @@ let
     vim-jsx-typescript
     vim-javascript
     gruvbox
+    editorconfig-vim
   ] ++ extraPlugins;
 in
 pkgs.neovim.override {
