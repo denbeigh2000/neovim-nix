@@ -9,9 +9,8 @@
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        neovim = (import ./default.nix {
-          pkgs = nixpkgs.legacyPackages."${system}";
-        });
+        pkgs = import nixpkgs { inherit system; };
+        neovim = (import ./default.nix { inherit pkgs; });
       in
       {
         packages.neovim = neovim;
