@@ -104,13 +104,13 @@ let g:LanguageClient_serverCommands = {
     \      }
     \    }
     \ },
-    \ 'python': ['pylsp'],
+    \ 'python': ['python', '-m', 'pylsp'],
     \ 'go': ['gopls'],
     \ 'java': ['java-language-server'],
-    \ 'javascript': ['./node_modules/.bin/typescript-language-server', '--stdio'],
-    \ 'typescript': ['./node_modules/.bin/typescript-language-server', '--stdio'],
-    \ 'typescript.tsx': ['./node_modules/.bin/typescript-language-server', '--stdio'],
-    \ 'typescriptreact': ['./node_modules/.bin/typescript-language-server', '--stdio'],
+    \ 'javascript': ['typescript-language-server', '--stdio'],
+    \ 'typescript': ['typescript-language-server', '--stdio'],
+    \ 'typescript.tsx': ['typescript-language-server', '--stdio'],
+    \ 'typescriptreact': ['typescript-language-server', '--stdio'],
     \ 'c': ['clangd'],
     \ 'cpp': ['clangd'],
     \ 'nix': ['rnix-lsp'],
