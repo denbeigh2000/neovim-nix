@@ -11,6 +11,7 @@ let
   plugins = with vimPlugins; [
     ansible-vim
     arcanist-vim
+    cmp-nvim-lsp
     committia-vim
     csv-vim
     editorconfig-vim
@@ -20,8 +21,8 @@ let
     indentLine
     kotlin-vim
     markdown-preview-nvim
-    ncm2
     nginx-vim
+    nvim-cmp
     nvim-yarp
     suda-vim
     taglist-vim

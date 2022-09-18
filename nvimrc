@@ -90,36 +90,29 @@ autocmd BufNewFile,BufRead,BufReadPost  *.tsx   set filetype=typescript.tsx
 " Fuck your recommended style!
 let g:rust_recommended_style = 0
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': {
-    \   'name': 'rust-analyzer',
-    \   'command': ['rust-analyzer'],
-    \   'initializationOptions': {
-    \      'cargo': {
-    \        'allFeatures': v:true,
-    \      },
-    \      'checkOnSave': {
-    \        'allFeatures': v:true,
-    \        'command': 'clippy',
-    \      }
-    \    }
-    \ },
-    \ 'python': ['python', '-m', 'pylsp'],
-    \ 'go': ['gopls'],
-    \ 'java': ['java-language-server'],
-    \ 'javascript': ['typescript-language-server', '--stdio'],
-    \ 'typescript': ['typescript-language-server', '--stdio'],
-    \ 'typescript.tsx': ['typescript-language-server', '--stdio'],
-    \ 'typescriptreact': ['typescript-language-server', '--stdio'],
-    \ 'c': ['clangd'],
-    \ 'cpp': ['clangd'],
-    \ 'nix': ['rnix-lsp'],
-    \ }
+" LSP base configuration
+lua <<EOF
+  require'lspconfig'.rust_analyzer.setup{}
 
-" let g:LanguageClient_settingsPath = '/home/denbeigh/.config/nvim/langclient.json'
-let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
-let g:LanguageClient_loggingLevel = 'INFO'
-let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
+  require'lspconfig'.pylsp.setup{
+    settings = {
+      pylsp = {
+        plugins = {
+          pycodestyle = {
+            -- TODO
+            -- ignore = {'W391'},
+            -- maxLineLength = 100
+          }
+        }
+      }
+    }
+  }
+  require'lspconfig'.gopls.setup{}
+  require'lspconfig'.java_language_server.setup{}
+  require'lspconfig'.tsserver.setup{}
+  require'lspconfig'.clangd.setup{}
+  require'lspconfig'.rnix.setup{}
+EOF
 
 " Airline setup
 let g:airline#extensions#tabline#=1
@@ -129,7 +122,7 @@ let g:airline_powerline_fonts=1
 let g:airline_theme='gruvbox'
 
 let g:rooter_patterns = ['go.mod', 'WORKSPACE', '.git/', 'Cargo.toml', 'pom.xml', '.gitignore']
-let g:LangaugeClient_rootMarkers = ['go.mod']
+" let g:LangaugeClient_rootMarkers = ['go.mod']
 
 " FZF Shortcut Bindings
 nnoremap <leader>q :Rg<CR>
@@ -138,16 +131,17 @@ nnoremap <leader>w :Files<CR>
 nnoremap <leader>e :Buffers<CR>
 nnoremap <leader>s :Lines<CR>
 nnoremap <leader>d :BLines<CR>
-nnoremap <leader>r :call LanguageClient#textDocument_rename()<CR>
-nnoremap <leader>R :call LanguageClient#textDocument_references()<CR>
-nnoremap <leader>f :call LanguageClient#textDocument_formatting()<CR>
-nnoremap <leader>c :call LanguageClient#explainErrorAtPoint()<CR>
-nnoremap K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <leader><leader> :call LanguageClient#textDocument_definition()<CR>
-nnoremap <leader>z :call LanguageClient#textDocument_codeAction()<CR>
-nnoremap <leader>Z :split<Bar>:call LanguageClient#handleCodeLensAction()<CR>
 
-nnoremap <leader>x :call LanguageClient#workspace_executeCommand("Run")<CR>
+" Language server keybindings
+lua <<EOF
+  vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename())
+  vim.keymap.set('n', '<leader>R', vim.lsp.buf.references())
+  vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting())
+  vim.keymap.set('n', '<leader><leader>', vim.lsp.buf.type_definition())
+  vim.keymap.set('n', '<leader>z', vim.lsp.buf.code_action())
+  -- vim.keymap.set('n', '<leader>K', vim.lsp.buf.hover())
+  vim.keymap.set('n', '<leader>x', vim.lsp.buf.run())
+EOF
 
 " incsearch.vim keybindings
 map /  <Plug>(incsearch-forward)
