@@ -55,8 +55,7 @@ set signcolumn=yes
 " In-code auto-completion
 " Use languageserver
 set completefunc=LanguageClient#complete
-" noinsert required for ncm2
-set completeopt=menu,preview,noinsert,menuone,noselect
+set completeopt=menu,preview,menuone,noselect
 
 " Let's get wild!!~
 " set wildignore+=*ios/*
@@ -79,7 +78,7 @@ set wildmode=longest,list:full
 
 " Language Client setup
 " Enable ncm2 autocompletion everywhere
-autocmd BufEnter  *  call ncm2#enable_for_buffer()
+" autocmd BufEnter  *  call ncm2#enable_for_buffer()
 
 " Required for operations modifying multiple buffers like rename.
 set hidden
@@ -90,11 +89,63 @@ autocmd BufNewFile,BufRead,BufReadPost  *.tsx   set filetype=typescript.tsx
 " Fuck your recommended style!
 let g:rust_recommended_style = 0
 
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
 " LSP base configuration
 lua <<EOF
-  require'lspconfig'.rust_analyzer.setup{}
+  local cmp = require('cmp')
+  cmp.setup{
+    completion = {
+      autocomplete = true
+    }
+    mapping = {
+      ['<C-Space>'] = cmp.mapping.complete()
+      -- ["<S-Tab>"] = cmp.mapping(function()
+      --   if cmp.visible() then
+      --     cmp.select_prev_item()
+      --   elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+      --     feedkey("<Plug>(vsnip-jump-prev)", "")
+      --   end
+      -- end, { "i", "s" }),
+    }
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end
+    }
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    }sssss
+    sources = {
+      { name = "nvim_lsp" }
+      { name = "nvim_lsp:rust_analyzer" }
+    }
+  }
 
-  require'lspconfig'.pylsp.setup{
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  local lspconfig = require('lspconfig')
+
+  lspconfig.rust_analyzer.setup{
+    -- capabilities = capabilities
+  }
+
+  -- TODO: Reduce copy-paste here
+  lspconfig.pylsp.setup{
+    capabilities = capabilities
     settings = {
       pylsp = {
         plugins = {
@@ -107,11 +158,21 @@ lua <<EOF
       }
     }
   }
-  require'lspconfig'.gopls.setup{}
-  require'lspconfig'.java_language_server.setup{}
-  require'lspconfig'.tsserver.setup{}
-  require'lspconfig'.clangd.setup{}
-  require'lspconfig'.rnix.setup{}
+  lspconfig.gopls.setup{
+    capabilities = capabilities
+  }
+  lspconfig.java_language_server.setup{
+    capabilities = capabilities
+  }
+  lspconfig.tsserver.setup{
+    capabilities = capabilities
+  }
+  lspconfig.clangd.setup{
+    capabilities = capabilities
+  }
+  lspconfig.rnix.setup{
+    capabilities = capabilities
+  }
 EOF
 
 " Airline setup
@@ -134,13 +195,13 @@ nnoremap <leader>d :BLines<CR>
 
 " Language server keybindings
 lua <<EOF
-  vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename())
-  vim.keymap.set('n', '<leader>R', vim.lsp.buf.references())
-  vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting())
-  vim.keymap.set('n', '<leader><leader>', vim.lsp.buf.type_definition())
-  vim.keymap.set('n', '<leader>z', vim.lsp.buf.code_action())
-  -- vim.keymap.set('n', '<leader>K', vim.lsp.buf.hover())
-  vim.keymap.set('n', '<leader>x', vim.lsp.buf.run())
+  vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename)
+  vim.keymap.set('n', '<Leader>R', vim.lsp.buf.references)
+  vim.keymap.set('n', '<Leader>f', vim.lsp.buf.formatting)
+  vim.keymap.set('n', '<Leader><Leader>', vim.lsp.buf.type_definition)
+  vim.keymap.set('n', '<Leader>z', vim.lsp.buf.code_action)
+  -- -- vim.keymap.set('n', '<Leader>K', vim.lsp.buf.hover)
+  vim.keymap.set('n', '<Leader>x', vim.lsp.codelens.run)
 EOF
 
 " incsearch.vim keybindings

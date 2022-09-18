@@ -11,7 +11,10 @@ let
   plugins = with vimPlugins; [
     ansible-vim
     arcanist-vim
+    cmp-buffer
     cmp-nvim-lsp
+    cmp-path
+    cmp-vsnip
     committia-vim
     csv-vim
     editorconfig-vim
@@ -23,6 +26,7 @@ let
     markdown-preview-nvim
     nginx-vim
     nvim-cmp
+    nvim-lspconfig
     nvim-yarp
     suda-vim
     taglist-vim
