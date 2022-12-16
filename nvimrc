@@ -106,10 +106,10 @@ smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 " LSP base configuration
 lua <<EOF
   local cmp = require('cmp')
-  cmp.setup{
+  cmp.setup({
     completion = {
       autocomplete = true
-    }
+    },
     mapping = {
       ['<C-Space>'] = cmp.mapping.complete()
       -- ["<S-Tab>"] = cmp.mapping(function()
@@ -119,24 +119,28 @@ lua <<EOF
       --     feedkey("<Plug>(vsnip-jump-prev)", "")
       --   end
       -- end, { "i", "s" }),
-    }
+    },
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
       end
-    }
+    },
     window = {
       -- completion = cmp.config.window.bordered(),
       -- documentation = cmp.config.window.bordered(),
-    }sssss
+    },
     sources = {
-      { name = "nvim_lsp" }
-      { name = "nvim_lsp:rust_analyzer" }
-    }
-  }
+      { name = "nvim_lsp" },
+      { name = "nvim_lsp:rust_analyzer" },
+      { name = "nvim_lsp:rnix" },
+      { name = "nvim_lsp:gopls" },
+      { name = "nvim_lsp:pylsp" },
+      { name = "nvim_lsp:tsserver" },
+    },
+  })
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
   local lspconfig = require('lspconfig')
 
   lspconfig.rust_analyzer.setup{
@@ -144,8 +148,8 @@ lua <<EOF
   }
 
   -- TODO: Reduce copy-paste here
-  lspconfig.pylsp.setup{
-    capabilities = capabilities
+  lspconfig.pylsp.setup({
+    capabilities = capabilities,
     settings = {
       pylsp = {
         plugins = {
@@ -157,7 +161,7 @@ lua <<EOF
         }
       }
     }
-  }
+  })
   lspconfig.gopls.setup{
     capabilities = capabilities
   }
@@ -197,7 +201,7 @@ nnoremap <leader>d :BLines<CR>
 lua <<EOF
   vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename)
   vim.keymap.set('n', '<Leader>R', vim.lsp.buf.references)
-  vim.keymap.set('n', '<Leader>f', vim.lsp.buf.formatting)
+  vim.keymap.set('n', '<Leader>f', vim.lsp.buf.format)
   vim.keymap.set('n', '<Leader><Leader>', vim.lsp.buf.type_definition)
   vim.keymap.set('n', '<Leader>z', vim.lsp.buf.code_action)
   -- -- vim.keymap.set('n', '<Leader>K', vim.lsp.buf.hover)
