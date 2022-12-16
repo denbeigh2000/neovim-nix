@@ -6,17 +6,23 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }: {
-    overlays.default = final: prev: {
+  outputs = { self, nixpkgs, flake-utils }:
+  let
+    overlay = final: prev: {
       neovim = (prev.callPackage ./default.nix { });
     };
+  in
+  {
+    overlays.default = overlay;
   } // flake-utils.lib.eachDefaultSystem (system:
     let
-      pkgs = import nixpkgs { inherit system; };
-      neovim = pkgs.callPackage ./default.nix { };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ overlay ];
+      };
     in
     {
-      packages = {
+      packages = with pkgs; {
         inherit neovim;
         default = neovim;
       };
