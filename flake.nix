@@ -7,7 +7,7 @@
   };
 
   outputs = { self, nixpkgs, flake-utils }: {
-    overlay = final: prev: {
+    overlays.default = final: prev: {
       neovim = (prev.callPackage ./default.nix { });
     };
   } // flake-utils.lib.eachDefaultSystem (system:
@@ -16,8 +16,9 @@
       neovim = pkgs.callPackage ./default.nix { };
     in
     {
-      defaultPackage = neovim;
-
-      packages.neovim = neovim;
+      packages = {
+        inherit neovim;
+        default = neovim;
+      };
     });
 }
