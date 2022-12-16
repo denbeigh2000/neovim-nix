@@ -1,6 +1,8 @@
-{ neovim
+{ neovim-unwrapped
+, neovimUtils
 , stdenv
 , vimPlugins
+, wrapNeovimUnstable
 }:
 
 let
@@ -45,13 +47,31 @@ let
     vim-vsnip
     vim-vsnip-integ
   ];
-in
-neovim.override {
-  configure = {
+
+  config = neovimUtils.makeNeovimConfig {
     customRC = (builtins.readFile ./nvimrc);
 
-    packages.myVimPackage = {
-      start = plugins;
-    };
+    inherit plugins;
+
+    withPython3 = true;
+    extraPython3Packages = (ps: with ps; [
+      autopep8
+      black
+      pycodestyle
+      pyflakes
+      pylint
+      python-lsp-server
+      pylsp-mypy
+      python-lsp-black
+      mccabe
+      rope
+      yapf
+    ]);
   };
-}
+
+in
+wrapNeovimUnstable neovim-unwrapped (config // {
+  extraName = "-denbeigh";
+  vimAlias = true;
+  viAlias = true;
+})
