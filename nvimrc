@@ -149,6 +149,8 @@ lua <<EOF
 
   -- TODO: Reduce copy-paste here
   lspconfig.pylsp.setup({
+    -- TODO: Will this be OK with running stuff in local venvs?
+    cmd = { vim.g.python3_host_prog, '-m', 'pylsp' },
     capabilities = capabilities,
     settings = {
       pylsp = {
@@ -156,7 +158,7 @@ lua <<EOF
           pycodestyle = {
             -- TODO
             -- ignore = {'W391'},
-            -- maxLineLength = 100
+            maxLineLength = 100,
           }
         }
       }
