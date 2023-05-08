@@ -104,7 +104,7 @@ let g:LanguageClient_serverCommands = {
     \      }
     \    }
     \ },
-    \ 'python': ['python', '-m', 'pylsp'],
+    \ 'python': [g:python3_host_prog, '-m', 'pylsp'],
     \ 'go': ['gopls'],
     \ 'java': ['java-language-server'],
     \ 'javascript': ['typescript-language-server', '--stdio'],
