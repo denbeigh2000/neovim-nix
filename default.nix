@@ -57,7 +57,6 @@ let
     extraPython3Packages = (ps: with ps; [
       autopep8
       black
-      pycodestyle
       pyflakes
       pylint
       python-lsp-server
@@ -65,7 +64,6 @@ let
       python-lsp-black
       mccabe
       rope
-      yapf
     ]);
   };
 

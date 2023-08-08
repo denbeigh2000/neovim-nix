@@ -102,9 +102,24 @@ let g:LanguageClient_serverCommands = {
     \        'allFeatures': v:true,
     \        'command': 'clippy',
     \      }
-    \    }
+    \   }
     \ },
-    \ 'python': [g:python3_host_prog, '-m', 'pylsp'],
+    \ 'python': {
+    \   'name': 'pylsp',
+    \   'command': [g:python3_host_prog, '-m', 'pylsp'],
+    \   'initializationOptions': {
+    \     'pylsp': {
+    \       'plugins': {
+    \         'pycodestyle': {
+    \           'enabled': v:false
+    \         },
+    \         'mypy': {
+    \           'dmypy': v:true
+    \         },
+    \       }
+    \     }
+    \   }
+    \ },
     \ 'go': ['gopls'],
     \ 'java': ['java-language-server'],
     \ 'javascript': ['typescript-language-server', '--stdio'],
