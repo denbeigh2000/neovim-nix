@@ -7,10 +7,7 @@ in
   config = {
     plugins = {
       nix.enable = mkDefault true;
-      lsp.servers.nixd = {
-        enable = mkDefault true;
-        settings.formatting.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-      };
+      lsp.servers.rnix-lsp.enable = mkDefault true;
 
       rooter.patterns = [ "flake.nix" ];
       treesitter.ensureInstalled = [ "nix" ];
