@@ -30,7 +30,6 @@
       vim-markdown
       vim-protobuf
       vim-puppet
-      vim-terraform
       vim-toml
     ];
 
