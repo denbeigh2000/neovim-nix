@@ -12,6 +12,7 @@
     ./languages/bazel.nix
     ./languages/c.nix
     ./languages/go.nix
+    ./languages/hcl.nix
     ./languages/java.nix
     ./languages/kotlin.nix
     ./languages/nix.nix
