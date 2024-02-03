@@ -2,17 +2,21 @@
 
 let
   inherit (lib) mkDefault;
+  inherit (pkgs) opentofu tflint;
 in
 {
   config = {
     plugins = {
-      lsp.servers.terraformls.enable = true;
+      lsp.servers.terraformls = {
+        enable = true;
+        extraOptions.path = "${opentofu}";
+      };
 
       rooter.patterns = [ "base.tf" ".terraform.lock.hcl" ".terraform" ];
       treesitter.ensureInstalled = [ "hcl" "terraform" ];
     };
 
     extraPlugins = [ pkgs.vimPlugins.vim-terraform ];
-    extraPackages = with pkgs; [ terraform tflint ];
+    extraPackages = [ tflint ];
   };
 }
