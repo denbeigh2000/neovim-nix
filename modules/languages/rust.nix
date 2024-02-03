@@ -17,6 +17,9 @@ in
             features = "all";
           };
         };
+
+        installCargo = false;
+        installRustc = false;
       };
 
       rooter.patterns = [ "Cargo.toml" "Cargo.lock" ];
