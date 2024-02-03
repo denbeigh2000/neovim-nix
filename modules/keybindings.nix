@@ -5,20 +5,19 @@
 
   config = {
     # Discourage use of arrow navigation
-    # TODO: Mouse?
-    maps =
+    keymaps =
       let
-        unbindArrows = {
-          "<Up>" = "<NOP>";
-          "<Down>" = "<NOP>";
-          "<Left>" = "<NOP>";
-          "<Right>" = "<NOP>";
-        };
+        arrowKeys = [ "Up" "Down" "Left" "Right" ];
       in
-      {
-        normalVisualOp = unbindArrows;
-        insert = unbindArrows;
-      };
+      builtins.map
+        (key: {
+          # disable everywhere except command mode, because
+          # vim keybindings aren't supported there (advice: use q: more)
+          mode = [ "n" "i" "v" "o" "t" ];
+          key = "<${key}>";
+          action = "<NOP>";
+        })
+        arrowKeys;
 
     options.mouse = "";
   };

@@ -19,10 +19,10 @@ in
   config = mkIf cfg.enable {
     extraPlugins = [ cfg.package ];
 
-    maps.normal = {
-      "/" = "<Plug>(is-scroll-f)";
-      "?" = "<Plug>(is-scroll-b)";
-    };
+    keymaps.normal = [
+      { key = "/"; action = "<Plug>(is-scroll-f)"; }
+      { key = "?"; action = "<Plug>(is-scroll-b)"; }
+    ];
   };
 }
 

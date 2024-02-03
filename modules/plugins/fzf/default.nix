@@ -19,13 +19,13 @@ in
   config = mkIf cfg.enable {
     extraPlugins = [ vimPlugins.fzf-vim ];
 
-    maps.normal = {
-      "<leader>q" = { action = ":Rg<CR>"; };
-      # "<leader>w" = { action = ":GFiles<CR>"; };
-      "<leader>w" = { action = ":Files<CR>"; };
-      "<leader>e" = { action = ":Buffers<CR>"; };
-      "<leader>s" = { action = ":Lines<CR>"; };
-      "<leader>d" = { action = ":BLines<CR>"; };
-    };
+    keymaps = [
+      { mode = "n"; key = "<leader>q"; action = ":Rg<CR>"; }
+      # { mode = "n"; key = "<leader>w";  action = ":GFiles<CR>"; }
+      { mode = "n"; key = "<leader>w"; action = ":Files<CR>"; }
+      { mode = "n"; key = "<leader>e"; action = ":Buffers<CR>"; }
+      { mode = "n"; key = "<leader>s"; action = ":Lines<CR>"; }
+      { mode = "n"; key = "<leader>d"; action = ":BLines<CR>"; }
+    ];
   };
 }
