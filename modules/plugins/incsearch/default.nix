@@ -11,17 +11,17 @@ in
     enable = mkEnableOption "incsearch-vim";
     package = mkOption {
       type = types.package;
-      default = vimPlugins.incsearch-vim;
+      default = vimPlugins.is-vim;
       description = "Plugin to use for incsearch-vim";
     };
   };
 
   config = mkIf cfg.enable {
-    extraPlugins = [ vimPlugins.incsearch-vim ];
+    extraPlugins = [ cfg.package ];
 
     maps.normal = {
-      "/" = "<Plug>(incsearch-forward)";
-      "?" = "<Plug>(incsearch-backward)";
+      "/" = "<Plug>(is-scroll-f)";
+      "?" = "<Plug>(is-scroll-b)";
     };
   };
 }
