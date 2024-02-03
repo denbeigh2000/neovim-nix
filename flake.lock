@@ -139,20 +139,47 @@
     },
     "nixpkgs": {
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1706732774,
         "narHash": "sha256-hqJlyJk4MRpcItGYMF+3uHe8HvxNETWvlGtLuVpqLU0=",
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "b8b232ae7b8b144397fdb12d20f592e5e7c1a64d",
+=======
+        "lastModified": 1706826059,
+        "narHash": "sha256-N69Oab+cbt3flLvYv8fYnEHlBsWwdKciNZHUbynVEOA=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "25e3d4c0d3591c99929b1ec07883177f6ea70c9d",
+>>>>>>> e451f19 (flake: update pins to 23.11)
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
+        "ref": "nixos-23.11",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
+<<<<<<< HEAD
+=======
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1706826059,
+        "narHash": "sha256-N69Oab+cbt3flLvYv8fYnEHlBsWwdKciNZHUbynVEOA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "25e3d4c0d3591c99929b1ec07883177f6ea70c9d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+>>>>>>> e451f19 (flake: update pins to 23.11)
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -164,15 +191,24 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1706989284,
         "narHash": "sha256-T1Ud7OOM6fUh+5JKkLxQscyu8su4/EH+6t098FYLg1c=",
         "owner": "nix-community",
         "repo": "nixvim",
         "rev": "e06aac2bec5f81339bd2215a92a673b33b6612ce",
+=======
+        "lastModified": 1704297403,
+        "narHash": "sha256-g7+4SiXDGzIlWIfANyH1J5CeEaY+Alah6KOm6IO4nIk=",
+        "owner": "nix-community",
+        "repo": "nixvim",
+        "rev": "b3ea5256e07ee9105060cffa075028402946bd63",
+>>>>>>> e451f19 (flake: update pins to 23.11)
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
+        "ref": "nixos-23.11",
         "repo": "nixvim",
         "type": "github"
       }
