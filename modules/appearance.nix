@@ -8,19 +8,23 @@
       # NOTE: Upstream appears to use gruvbox-nvim, which doesn't actually
       # respect the global variables set by the module(??)
       package = pkgs.vimPlugins.gruvbox;
-      bold = true;
-      italics = true;
-      italicizeComments = true;
-      italicizeStrings = false;
-      contrastDark = "soft";
-      contrastLight = "soft";
+      settings = {
+        bold = true;
+        italics = true;
+        italicize_comments = true;
+        italicize_strings = false;
+        contrast_dark = "soft";
+        contrast_light = "soft";
+      };
     };
 
     plugins = {
       airline = {
         enable = true;
-        extensions.tabline.enabled = 1;
-        powerline = true;
+        extraConfig = {
+          extensions = [ "tabline" ];
+        };
+        powerlineFonts = true;
         theme = "gruvbox";
       };
 
