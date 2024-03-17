@@ -18,6 +18,8 @@ in
           };
         };
 
+        # Use external rust-analyzer
+        package = null;
         installCargo = false;
         installRustc = false;
       };

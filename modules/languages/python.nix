@@ -8,6 +8,8 @@ in
     plugins = {
       lsp.servers.pylsp = {
         enable = mkDefault true;
+        # Use external pylsp
+        package = null;
         settings.plugins = {
           black = {
             enabled = mkDefault true;
