@@ -9,9 +9,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+
+    denbeigh-ci = {
+      url = "github:denbeigh2000/ci";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils, nixvim }:
+  outputs = { self, nixpkgs, flake-utils, nixvim, denbeigh-ci }:
     let
       overlay = final: prev: {
         neovim = (import ./default.nix {
@@ -36,7 +42,10 @@
 
       in
       {
+        ci = denbeigh-ci.lib.mkCIConfig { inherit self pkgs; };
+
         packages = with pkgs; {
+          ci-tool = denbeigh-ci.packages.${system}.tool;
           inherit neovim;
           default = neovim;
         };
