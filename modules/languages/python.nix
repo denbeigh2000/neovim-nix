@@ -9,10 +9,7 @@ in
       lsp.servers.pylsp = {
         enable = mkDefault true;
         settings.plugins = {
-          black = {
-            enabled = mkDefault true;
-            line_length = mkDefault 79;
-          };
+          black.enabled = mkDefault true;
           isort.enabled = mkDefault true;
           ruff.enabled = mkDefault true;
           pycodestyle.enabled = mkDefault true;
