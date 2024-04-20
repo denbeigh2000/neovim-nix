@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 let
   inherit (lib) mkDefault;
@@ -9,14 +9,20 @@ in
       lsp.servers.pylsp = {
         enable = mkDefault true;
         settings.plugins = {
+          autopep8.enabled = mkDefault false;
           black.enabled = mkDefault true;
+          flake8.enabled = mkDefault false;
           isort.enabled = mkDefault true;
-          ruff.enabled = mkDefault true;
-          pycodestyle.enabled = mkDefault true;
-          # pyflakes.enabled = mkDefault true;
+          pycodestyle.enabled = mkDefault false;
+          pyflakes.enabled = mkDefault false;
           pylsp_mypy = {
             enabled = mkDefault true;
-            dmypy = mkDefault true;
+          };
+          ruff = {
+            enabled = mkDefault true;
+            executable = mkDefault "${pkgs.ruff}/bin/ruff";
+            lineLength = mkDefault 88;
+            ignore = mkDefault [ "E501" ];
           };
         };
       };
