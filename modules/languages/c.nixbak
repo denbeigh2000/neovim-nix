@@ -8,7 +8,7 @@ in
   config = {
     plugins = {
       lsp.servers.clangd.enable = mkDefault true;
-      treesitter.settings.ensure_installed = [ "c" "cpp" ];
+      treesitter.ensureInstalled = [ "c" "cpp" ];
     };
   };
 }

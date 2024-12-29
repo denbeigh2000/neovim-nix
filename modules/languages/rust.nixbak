@@ -23,7 +23,7 @@ in
       };
 
       rooter.patterns = [ "Cargo.toml" "Cargo.lock" ];
-      treesitter.settings.ensure_installed = [ "rust" ];
+      treesitter.ensureInstalled = [ "rust" ];
     };
   };
 }

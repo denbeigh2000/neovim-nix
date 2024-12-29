@@ -13,7 +13,7 @@ in
       };
 
       rooter.patterns = [ "base.tf" ".terraform.lock.hcl" ".terraform" ];
-      treesitter.settings.ensure_installed = [ "hcl" "terraform" ];
+      treesitter.ensureInstalled = [ "hcl" "terraform" ];
     };
 
     extraPlugins = [ pkgs.vimPlugins.vim-terraform ];

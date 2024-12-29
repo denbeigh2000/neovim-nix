@@ -30,7 +30,7 @@
   config = {
     globals.mapleader = " ";
 
-    options = {
+    opts = {
       # noinsert required for ncm2
       # completeopt = [ "menu" "preview" "noinsert" "menuonenoselect" ];
 

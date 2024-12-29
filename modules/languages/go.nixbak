@@ -15,7 +15,7 @@ in
       };
 
       rooter.patterns = [ "go.mod" ];
-      treesitter.settings.ensure_installed = [ "go" ];
+      treesitter.ensureInstalled = [ "go" ];
     };
 
     extraPlugins = [ pkgs.vimPlugins.vim-go ];

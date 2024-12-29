@@ -19,6 +19,6 @@
         })
         arrowKeys;
 
-    options.mouse = "";
+    opts.mouse = "";
   };
 }

@@ -3,7 +3,7 @@
 # Let's get wild!!~
 {
   config = {
-    options = {
+    opts = {
       # Likely paths I'll never want to appear in autocomplete
       wildignore = [
         "*android/*"

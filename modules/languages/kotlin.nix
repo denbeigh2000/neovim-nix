@@ -5,7 +5,7 @@ let
 in
 {
   config = {
-    plugins.lsp.servers.kotlin-language-server.enable = mkDefault true;
+    plugins.lsp.servers.kotlin_language_server.enable = mkDefault true;
     extraPlugins = [ pkgs.vimPlugins.kotlin-vim ];
   };
 }

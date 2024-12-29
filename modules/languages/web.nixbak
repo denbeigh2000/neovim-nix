@@ -13,7 +13,7 @@ in
         "yarn.lock"
         "pnpm-lock.yaml"
       ];
-      treesitter.settings.ensure_installed = [
+      treesitter.ensureInstalled = [
         "css"
         "html"
         "javascript"

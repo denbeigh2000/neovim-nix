@@ -5,7 +5,7 @@ let
 in
 {
   config = {
-    options.signcolumn = "yes";
+    opts.signcolumn = "yes";
 
     plugins = {
       lsp-format.enable = mkDefault true;

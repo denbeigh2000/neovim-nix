@@ -21,11 +21,11 @@
     plugins = {
       airline = {
         enable = true;
-        extraConfig = {
+        settings = {
           extensions = [ "tabline" ];
+          powerline_fonts = 1;
+          theme = "gruvbox";
         };
-        powerlineFonts = true;
-        theme = "gruvbox";
       };
 
       cmp-treesitter.enable = true;
@@ -33,11 +33,11 @@
 
       treesitter = {
         enable = true;
-        indent = true;
+        settings.indent.enable = true;
       };
     };
 
-    options = {
+    opts = {
       background = "dark";
       syntax = "on";
 
