@@ -29,7 +29,7 @@ in
       };
 
       cmp-nvim-lsp.enable = mkDefault true;
-      nvim-cmp.sources = [{ name = "nvim_lsp"; }];
+      cmp.settings.sources = [{ name = "nvim_lsp"; }];
     };
   };
 }

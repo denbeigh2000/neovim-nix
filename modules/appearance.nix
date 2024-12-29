@@ -29,7 +29,7 @@
       };
 
       cmp-treesitter.enable = true;
-      nvim-cmp.sources = [{ name = "treesitter"; }];
+      cmp.settings.sources = [{ name = "treesitter"; }];
 
       treesitter = {
         enable = true;
