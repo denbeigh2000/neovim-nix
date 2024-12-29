@@ -5,16 +5,14 @@
     colorscheme = "gruvbox";
     colorschemes.gruvbox = {
       enable = true;
-      # NOTE: Upstream appears to use gruvbox-nvim, which doesn't actually
-      # respect the global variables set by the module(??)
-      package = pkgs.vimPlugins.gruvbox;
       settings = {
         bold = true;
         italics = true;
         italicize_comments = true;
         italicize_strings = false;
-        contrast_dark = "soft";
-        contrast_light = "soft";
+        contrast = "soft";
+        background = "dark";
+        terminal_colors = true;
       };
     };
 
@@ -24,7 +22,7 @@
         settings = {
           extensions = [ "tabline" ];
           powerline_fonts = 1;
-          theme = "gruvbox";
+          theme = "base16_gruvbox_dark_soft";
         };
       };
 
@@ -71,6 +69,6 @@
       laststatus = 2;
     };
 
-    extraPlugins = [ pkgs.vimPlugins.indentLine ];
+    extraPlugins = with pkgs.vimPlugins; [ indentLine vim-airline-themes ];
   };
 }
