@@ -1,5 +1,3 @@
-{ pkgs, lib, config, ... }:
-
 {
   imports = [
     ./appearance.nix
@@ -16,6 +14,7 @@
     ./languages/java.nix
     ./languages/kotlin.nix
     ./languages/nix.nix
+    ./languages/ocaml.nix
     ./languages/python.nix
     ./languages/rust.nix
     ./languages/web.nix
